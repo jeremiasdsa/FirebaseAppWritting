@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "654900290751",
+    "firebase_url": "https://interactchat.firebaseio.com",
+    "project_id": "interactchat",
+    "storage_bucket": "interactchat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654900290751:android:14989efb6be473b8",
+        "android_client_info": {
+          "package_name": "com.epsonvirtus.interactandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "654900290751-q9bi4bhtc1j17j0c540f7cci0rr22j69.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxTwLg97FWaNftVpwoAa_0w_sJkKx-BS0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654900290751:android:21e3c42d8876f838",
+        "android_client_info": {
+          "package_name": "com.example.jeremias.firebaseappwritting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "654900290751-q9bi4bhtc1j17j0c540f7cci0rr22j69.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxTwLg97FWaNftVpwoAa_0w_sJkKx-BS0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
