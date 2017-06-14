@@ -1,5 +1,7 @@
 package com.example.jeremias.firebaseappwritting;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -40,12 +42,28 @@ public class MainActivity extends AppCompatActivity {
 
         HashMap<String, String> result = new HashMap<>();
 
-
-
         result.put("message", message);
-        result.put("userName", userName);
+        result.put("user", userName);
 
         myRef.child("CHAT-APP").child("ID-ANDROID").setValue(result);
+
+        tvMessage.setText("type your message");
+        tvMessage.setTextColor(Color.GRAY);
+        tvUserName.setText("Jose");
+        tvUserName.setTextColor(Color.GRAY);
+
+    }
+
+    public void clearText(View v) {
+
+        if( v == tvMessage) {
+            tvMessage.setText("");
+            tvMessage.setTextColor(Color.BLACK);
+
+        }else if (v == tvUserName){
+            tvUserName.setText("");
+            tvUserName.setTextColor(Color.BLACK);
+        }
 
     }
 }
