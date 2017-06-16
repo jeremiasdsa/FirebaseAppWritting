@@ -1,69 +1,66 @@
 package com.example.jeremias.firebaseappwritting;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference();
-
-    private Button btn;
-    private TextView tvMessage;
+    private Button btnLoggin;
+    private TextView tvRoomID;
     private TextView tvUserName;
+    private TextView tvpassword;
+    public static final String EXTRA_MESSAGE_ROOMID = "com.example.jeremias.firebaseappwritting.ROOMID";
+    public static final String EXTRA_MESSAGE_USERNAME = "com.example.jeremias.firebaseappwritting.USERNAME";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println(myRef.child("CHAT-APP"));
 
-        btn = (Button) findViewById(R.id.button);
-        tvMessage = (TextView) findViewById(R.id.message);
-        tvUserName = (TextView) findViewById(R.id.userName);
+        btnLoggin = (Button) findViewById(R.id.btnLoggin);
+        tvpassword = (TextView) findViewById(R.id.tvPassword);
+        tvUserName = (TextView) findViewById(R.id.tvUserName);
+        tvRoomID = (TextView) findViewById(R.id.tvRoomId);
 
-
-    }
-
-    public void btnPressed(View v) {
-
-        String message = String.valueOf(tvMessage.getText()).trim();
-        String userName =  String.valueOf(tvUserName.getText()).trim();
-
-        HashMap<String, String> result = new HashMap<>();
-
-        result.put("message", message);
-        result.put("user", userName);
-
-        myRef.child("CHAT-APP").child("ID-ANDROID").setValue(result);
-
-        tvMessage.setText("type your message");
-        tvMessage.setTextColor(Color.GRAY);
-        tvUserName.setText("Jose");
-        tvUserName.setTextColor(Color.GRAY);
 
     }
 
-    public void clearText(View v) {
+    public void btnLoggin(View v) {
 
-        if( v == tvMessage) {
-            tvMessage.setText("");
-            tvMessage.setTextColor(Color.BLACK);
+        Intent intent = new Intent(this, ChatActivity.class);
+        String roomID = String.valueOf(tvRoomID.getText()).trim();
+        String userName = String.valueOf(tvUserName.getText()).trim();
+        String password = String.valueOf(tvpassword.getText()).trim();
 
-        }else if (v == tvUserName){
-            tvUserName.setText("");
-            tvUserName.setTextColor(Color.BLACK);
+        if(!(userName.equals("") && roomID.equals("") && password.equals(""))){
+            intent.putExtra(EXTRA_MESSAGE_ROOMID, roomID);
+            intent.putExtra(EXTRA_MESSAGE_USERNAME, userName);
+            startActivity(intent);
+        }
+        else{
+            Snackbar.make(findViewById(android.R.id.content), "Empty fields", Snackbar.LENGTH_LONG).show();
+            hideKeyboard(MainActivity.this);
         }
 
     }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = activity.getCurrentFocus();
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
 }
